@@ -1,3 +1,0 @@
-void evaluate_population()
-{
-}
