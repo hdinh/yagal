@@ -1,1 +1,13 @@
 bin
+Debug
+Release
+ipch
+CMakeFiles
+CMakeCache.txt
+*.cmake
+*.filters
+*.opensdf
+*.sln
+*.sdf
+*.user
+*.vcxproj
