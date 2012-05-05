@@ -12,3 +12,5 @@ CMakeCache.txt
 *.suo
 *.user
 *.vcxproj
+
+PyYagal/*.c
