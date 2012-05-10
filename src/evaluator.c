@@ -1,15 +1,22 @@
-void evaluate_population()
+#include "config.h"
+#include "evaluator.h"
+
+void evolutionstate_init()
 {
 }
 
-void setup()
+void evolutionstate_setup()
 {
 }
 
-void initialize()
+void evolutionstate_finish()
 {
 }
 
-void close()
+void evolutionstate_evolve()
+{
+}
+
+void evolutionstate_run()
 {
 }
