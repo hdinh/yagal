@@ -20,7 +20,6 @@ class EvolutionState:
     def run(self):
         pass
 
-
 class Evolve:
     @staticmethod
     def run(argv):
