@@ -2,8 +2,15 @@ bin
 Debug
 Release
 ipch
+build
+dist
+docs
+env
+
+PyYagal/*.c
 CMakeFiles
 CMakeCache.txt
+
 *.cmake
 *.filters
 *.opensdf
@@ -12,5 +19,7 @@ CMakeCache.txt
 *.suo
 *.user
 *.vcxproj
-
-PyYagal/*.c
+*.egg-info
+*.egg
+*.pyc
+*.so
