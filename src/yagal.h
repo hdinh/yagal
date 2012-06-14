@@ -5,30 +5,29 @@ struct Propulation;
 struct Individual;
 struct State;
 
-struct State
+typedef struct
 {
-};
+} State;
 
-struct Population
+typedef struct
 {
-};
+} Population;
 
-struct Individual
+typedef struct
 {
     int evaluated;
-};
+} Individual;
 
+typedef void (*evaluateFunction)(State *, Individual *, Population *);
+typedef void (*setFinessFunction)(Individual *, State *, int);
 
-typedef void (*evaluateFunction)(struct State *, struct Individual *, struct Population *);
-typedef void (*setFinessFunction)(struct Individual *, struct State *, int);
-
-struct Problem
+typedef struct
 {
     evaluateFunction evaluate;
-};
+} Problem;
 
-void yagal_set_fitness(struct Individual *, struct State *);
+void yagal_set_fitness(Individual *, State *);
 struct Problem* yagal_simple_problem_form(evaluateFunction *);
-void yagal_evolve(struct Problem *);
+void yagal_evolve(Problem *);
 
 #endif

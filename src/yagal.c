@@ -2,7 +2,7 @@
 #include "yagal.h"
 
 
-void __YAGAL_VISIBLE yagal_set_fitness(struct Individual *ind, struct State *state)
+void __YAGAL_VISIBLE yagal_set_fitness(Individual *ind, State *state)
 {
     return;
 }
@@ -12,7 +12,7 @@ struct __YAGAL_VISIBLE Problem* yagal_simple_problem_form(evaluateFunction *eval
     return 0;
 }
 
-void __YAGAL_VISIBLE yagal_evolve(struct Problem* problem)
+void __YAGAL_VISIBLE yagal_evolve(Problem* problem)
 {
     return;
 }

@@ -1,8 +1,8 @@
-cdef class SimpleProblemForm:
+cdef class SimpleProblemForm(object):
     pass
 
 
-class EvolutionState:
+class EvolutionState(object):
     def __init__(self):
         self.breed_threads = 2
         self.eval_threads = 2
