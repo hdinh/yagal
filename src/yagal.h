@@ -27,7 +27,7 @@ typedef struct
 } Problem;
 
 void yagal_set_fitness(Individual *, State *);
-struct Problem* yagal_simple_problem_form(evaluateFunction *);
+Problem* yagal_simple_problem_form(evaluateFunction *);
 void yagal_evolve(Problem *);
 
 #endif

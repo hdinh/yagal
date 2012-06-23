@@ -43,7 +43,13 @@ try:
 except:
     pass
 
-extensions = [Extension("yagal", [os.path.join(script_dir, "yagal.pyx")])]
+extensions = [Extension("yagal",
+                        sources = [os.path.join(script_dir, "yagal.pyx")],
+                        library_dirs = [os.path.join(script_dir, '..', 'bin')],
+                        include_dirs = [os.path.join(script_dir, '..', 'src')],
+                        #libraries = ['libyagal'])
+                        libraries = [os.path.join(script_dir, '..', 'bin', 'libyagal')])
+]
 
 #------------------------------------------------------------------------------
 # Main setup
