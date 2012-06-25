@@ -2,17 +2,17 @@
 #include "yagal.h"
 
 
-void __YAGAL_VISIBLE yagal_set_fitness(Individual *ind, State *state)
+void yagal_set_fitness(Individual *ind, State *state)
 {
     return;
 }
 
-Problem* __YAGAL_VISIBLE yagal_simple_problem_form(evaluateFunction *evaluate_function)
+Problem* yagal_simple_problem_form(evaluateFunction *evaluate_function)
 {
     return 0;
 }
 
-void __YAGAL_VISIBLE yagal_evolve(Problem* problem)
+void yagal_evolve(Problem* problem)
 {
     printf("evolving....");
     return;

@@ -1,6 +1,8 @@
 #ifndef _YAGAL_H_
 #define _YAGAL_H_
 
+#include "config.h"
+
 struct Propulation;
 struct Individual;
 struct State;
@@ -26,8 +28,8 @@ typedef struct
     evaluateFunction evaluate;
 } Problem;
 
-void yagal_set_fitness(Individual *, State *);
-Problem* yagal_simple_problem_form(evaluateFunction *);
-void yagal_evolve(Problem *);
+YagalAPI(void) yagal_set_fitness(Individual *, State *);
+YagalAPI(Problem*) yagal_simple_problem_form(evaluateFunction *);
+YagalAPI(void) yagal_evolve(Problem *);
 
 #endif

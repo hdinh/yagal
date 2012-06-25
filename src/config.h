@@ -2,8 +2,9 @@
 #define YAGAL_CONFIG_H
 
 #ifdef _WIN32
-    #define __YAGAL_VISIBLE __declspec(dllimport)
+#   define YagalAPI(RTYPE) __declspec(dllimport) RTYPE
 #else
-    #define __YAGAL_VISIBLE __attribute__ ((visibility("default")))
+#   define YagalAPI(RTYPE) extern RTYPE
 #endif
+
 #endif
