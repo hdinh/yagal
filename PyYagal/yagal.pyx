@@ -38,7 +38,10 @@ class Evolve:
     def run(argv):
         pass
 
-cdef main():
+def main():
+    evolve()
+
+cdef evolve():
     cdef Problem* problem
     yagal_evolve(problem)
 

@@ -47,8 +47,9 @@ extensions = [Extension("yagal",
                         sources = [os.path.join(script_dir, "yagal.pyx")],
                         library_dirs = [os.path.join(script_dir, '..', 'bin')],
                         include_dirs = [os.path.join(script_dir, '..', 'src')],
+                        runtime_library_dirs = [os.path.join(script_dir, '..', 'bin')],
                         #libraries = ['libyagal'])
-                        libraries = [os.path.join(script_dir, '..', 'bin', 'libyagal')])
+                        libraries = [os.path.join(script_dir, '..', 'bin', 'yagal')])
 ]
 
 #------------------------------------------------------------------------------
