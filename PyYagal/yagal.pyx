@@ -38,11 +38,6 @@ class EvolutionState(object):
         pass
 """
 
-class Evolve:
-    @staticmethod
-    def run(argv):
-        pass
-
 cdef evolve(problem):
     #yagal_evolve(problem)
     pass
