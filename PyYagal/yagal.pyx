@@ -18,29 +18,49 @@ cdef extern from "yagal.h":
     void yagal_evolve(Problem *problem)
 
 
-"""
-class EvolutionState(object):
-    def __init__(self):
-        self.breed_threads = 2
-        self.eval_threads = 2
-        self.generation = 1
-
-    def setup(self):
-        pass
-
-    def finish(self):
-        pass
-
-    def evolve(self):
-        pass
-
-    def run(self):
-        pass
-"""
-
-cdef evolve(problem):
+cdef c_evolve(problem):
     #yagal_evolve(problem)
-    pass
+    print('evolving....')
+    import time
+    time.sleep(3)
+    return ['Best']
 
-#if __name__ == '__main__':
-#    main()
+def begin_evolve(problem):
+    """
+    The asynchronous evolve function.
+    This method will be for more advanced users.
+    I need to figure out a common way to pass a threading event
+    to the c function.
+    For now, do a ghetto thread join
+    """
+    def evolve_function():
+        c_evolve(problem)
+
+    import threading
+    t = threading.Thread(target=evolve_function)
+    t.setDaemon(True)
+    t.start()
+    return FutureEvolveResult(t)
+
+
+class FutureEvolveResult(object):
+    """
+    Asynchronous result of the evolve method.
+    """
+    def __init__(self, thread):
+        self.thread_to_wait_for = thread
+
+    def join(self):
+        self.thread_to_wait_for.join()
+
+
+def evolve(problem):
+    """
+    The synchronous evolve function.
+    This method is intended for beginners and light-weights.
+    It will block until everything is finished.
+    """
+    c_evolve(problem)
+
+if __name__ == '__main__':
+    pass

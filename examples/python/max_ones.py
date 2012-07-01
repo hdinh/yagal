@@ -1,9 +1,8 @@
-import yagal
+#!/usr/bin/env python
 
-class MaxOnes(yagal.SimpleProblemForm):
-    def __init__(self):
-        yagal.SimpleProblemForm.__init__(self)
+from yagal import begin_evolve
 
+class MaxOnes(object):
     def evaluate(self, state, individual, subpopulation, threadnum):
         if not individual.evaluated:
             num_ones = len([i for i in ind.genome if i == 1])
@@ -12,8 +11,9 @@ class MaxOnes(yagal.SimpleProblemForm):
 
 def main():
     problem = MaxOnes()
-    yagal.evolve(problem)
-    print(problem.population.subpops[0].individuals[0])
+    future_result = begin_evolve(problem)
+    result = future_result.join()
+    print(result.individuals[0])
 
 if __name__ == '__main__':
     main()
