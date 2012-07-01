@@ -1,6 +1,6 @@
 #include "yagal.h"
 
-void max_ones(State *state, Individual *ind, Population *subpopulation, int threadnum)
+void max_ones(EvolutionState *state, Individual *ind, Population *subpopulation, int threadnum)
 {
     int numOnes = 0;
     if (ind->evaluated == 0)

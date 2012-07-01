@@ -1,20 +1,24 @@
 cdef extern from "yagal.h":
-    ctypedef struct State:
-        pass
-
-    ctypedef struct Population:
+    ctypedef struct EvolutionState:
         pass
 
     ctypedef struct Individual:
         pass
 
+    ctypedef struct Population:
+        Individual* individuals
+
     ctypedef struct Problem:
         pass
 
-    void yagal_set_fitness(Individual *ind, State *state)
+    ctypedef struct SimpleProblemForm:
+        Population* subpops
+
+    void yagal_set_fitness(Individual *ind, EvolutionState *state)
     void yagal_evolve(Problem *problem)
 
 
+"""
 class EvolutionState(object):
     def __init__(self):
         self.breed_threads = 2
@@ -32,18 +36,16 @@ class EvolutionState(object):
 
     def run(self):
         pass
+"""
 
 class Evolve:
     @staticmethod
     def run(argv):
         pass
 
-def main():
-    evolve()
+cdef evolve(problem):
+    #yagal_evolve(problem)
+    pass
 
-cdef evolve():
-    cdef Problem* problem
-    yagal_evolve(problem)
-
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()

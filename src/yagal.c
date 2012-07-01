@@ -2,7 +2,7 @@
 #include "yagal.h"
 
 
-void yagal_set_fitness(Individual *ind, State *state)
+void yagal_set_fitness(Individual *ind, EvolutionState *state)
 {
     return;
 }
@@ -14,6 +14,11 @@ Problem* yagal_simple_problem_form(evaluateFunction *evaluate_function)
 
 void yagal_evolve(Problem* problem)
 {
-    printf("evolving....");
+    /*
+    EvolutionState state;
+    problem->setup(state);
+    problem->run(state);
+    problem->finish(state);
+    */
     return;
 }

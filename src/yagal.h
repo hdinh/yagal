@@ -3,32 +3,40 @@
 
 #include "config.h"
 
+/*
 struct Propulation;
 struct Individual;
-struct State;
+struct EvolutionState;
+*/
 
 typedef struct
 {
-} State;
-
-typedef struct
-{
-} Population;
+} EvolutionState;
 
 typedef struct
 {
     int evaluated;
 } Individual;
 
-typedef void (*evaluateFunction)(State *, Individual *, Population *);
-typedef void (*setFinessFunction)(Individual *, State *, int);
+typedef struct
+{
+    Individual* individuals;
+} Population;
+
+typedef struct
+{
+    Population* population;
+} SimpleProblemForm;
+
+typedef void (*evaluateFunction)(EvolutionState *, Individual *, Population *);
+typedef void (*setFinessFunction)(Individual *, EvolutionState *, int);
 
 typedef struct
 {
     evaluateFunction evaluate;
 } Problem;
 
-YagalAPI(void) yagal_set_fitness(Individual *, State *);
+YagalAPI(void) yagal_set_fitness(Individual *, EvolutionState *);
 YagalAPI(Problem*) yagal_simple_problem_form(evaluateFunction *);
 YagalAPI(void) yagal_evolve(Problem *);
 
