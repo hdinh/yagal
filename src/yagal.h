@@ -3,11 +3,10 @@
 
 #include "config.h"
 
-/*
-struct Propulation;
-struct Individual;
-struct EvolutionState;
-*/
+typedef struct
+{
+    int generations;
+} EvolutionParams;
 
 typedef struct
 {

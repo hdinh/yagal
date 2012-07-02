@@ -14,6 +14,12 @@ Problem* yagal_simple_problem_form(evaluateFunction *evaluate_function)
 
 void yagal_evolve(Problem* problem)
 {
+    EvolutionState state;
+    Individual ind;
+    Population subpop;
+    int threadnum;
+
+    //problem->evaluate(state, ind, subpop, threadnum);
     /*
     EvolutionState state;
     problem->setup(state);
