@@ -14,14 +14,16 @@ Problem* yagal_simple_problem_form(evaluateFunction *evaluate_function)
 
 void yagal_evolve(Problem* problem)
 {
-    printf("calling!!!");
     EvolutionState state;
     Individual ind;
     Population subpop;
-    int threadnum;
+    char *cheese = "cheese";
 
+    evaluateFunction ef = (evaluateFunction)problem->evaluate;
+    ef(cheese);
+    //((evaluateFunction)(problem->evaluate))(threadnum);
+    //((evaluateFunction)problem->evaluate)(&state, &ind, &subpop, threadnum);
     /*
-    ((evaluateFunction)problem)(&state, &ind, &subpop);
     EvolutionState state;
     problem->setup(state);
     problem->run(state);

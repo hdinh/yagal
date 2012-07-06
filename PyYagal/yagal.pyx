@@ -11,7 +11,8 @@ cdef extern from "yagal.h":
     ctypedef struct Population:
         Individual* individuals
 
-    ctypedef void (*evaluateFunction)(EvolutionState *, Individual *, Population *)
+    #ctypedef void (*evaluateFunction)(EvolutionState *, Individual *, Population *, int)
+    ctypedef void (*evaluateFunction)(char *)
 
     ctypedef struct Problem:
         void* evaluate
@@ -26,6 +27,9 @@ cdef extern from "yagal.h":
 cdef c_evolve(Problem* problem):
     yagal_evolve(problem)
 
+cdef void c_call_wrapper(char *name):
+    print(name)
+
 def begin_evolve(problem, params):
     """
     The asynchronous evolve function.
@@ -39,7 +43,8 @@ def begin_evolve(problem, params):
         print('about to call......')
         e = problem.evaluate
         cdef Problem c_problem
-        c_problem.evaluate = <void*>e
+        #c_problem.evaluate = <void*>e
+        c_problem.evaluate = <void*>c_call_wrapper
         c_evolve(&c_problem)
 
     import threading

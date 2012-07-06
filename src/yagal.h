@@ -27,12 +27,12 @@ typedef struct
     Population* population;
 } SimpleProblemForm;
 
-typedef void (*evaluateFunction)(EvolutionState *, Individual *, Population *);
+//typedef void (*evaluateFunction)(EvolutionState *, Individual *, Population *, int);
+typedef void (*evaluateFunction)(char *);
 typedef void (*setFinessFunction)(Individual *, EvolutionState *, int);
 
 typedef struct
 {
-    //evaluateFunction evaluate;
     void* evaluate;
 } Problem;
 
