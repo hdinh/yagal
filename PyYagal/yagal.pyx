@@ -14,7 +14,7 @@ cdef extern from "yagal.h":
     ctypedef void (*evaluateFunction)(EvolutionState *, Individual *, Population *)
 
     ctypedef struct Problem:
-        evaluateFunction evaluate
+        void* evaluate
 
     ctypedef struct SimpleProblemForm:
         Population* subpops
@@ -23,12 +23,10 @@ cdef extern from "yagal.h":
     void yagal_set_fitness(Individual *ind, EvolutionState *state)
     void yagal_evolve(Problem *problem)
 
-
-cdef Population c_evolve(Problem* problem):
+cdef c_evolve(Problem* problem):
     yagal_evolve(problem)
-    return Population()
 
-def begin_evolve(evaluate_method):
+def begin_evolve(problem, params):
     """
     The asynchronous evolve function.
     This method will be for more advanced users.
@@ -36,14 +34,13 @@ def begin_evolve(evaluate_method):
     to the c function.
     For now, do a ghetto thread join
     """
-    cdef Problem problem
-
-    # TODO: Next _MAJOR_ hurdle.
-    # How do you call Python from C
-    #problem.evaluate = <evaluateFunction>evaluate_method
 
     def evolve_function():
-        c_evolve(&problem)
+        print('about to call......')
+        e = problem.evaluate
+        cdef Problem c_problem
+        c_problem.evaluate = <void*>e
+        c_evolve(&c_problem)
 
     import threading
     t = threading.Thread(target=evolve_function)
@@ -51,6 +48,8 @@ def begin_evolve(evaluate_method):
     t.start()
     return FutureEvolveResult(t)
 
+class EvolutionProblem(object):
+    pass
 
 class FutureEvolveResult(object):
     """
@@ -63,19 +62,22 @@ class FutureEvolveResult(object):
         self.thread_to_wait_for.join()
 
 
-def evolve(evaluate_method):
+def evolve(problem):
     """
     The synchronous evolve function.
     This method is intended for beginners and light-weights.
     It will block until everything is finished.
     """
-    cdef Problem problem
 
-    # TODO: Next _MAJOR_ hurdle.
-    # How do you call Python from C
-    #problem.evaluate = <evaluateFunction>evaluate_method
+    e = problem.evaluate
+    cdef Problem c_problem
+    c_problem.evaluate = <void*>e
+    c_evolve(&c_problem)
 
-    c_evolve(&problem)
+    """
+    e = problem.evaluate
+    c_evolve(<void*>e)
+    """
 
 if __name__ == '__main__':
     pass

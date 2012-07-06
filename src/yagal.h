@@ -32,7 +32,8 @@ typedef void (*setFinessFunction)(Individual *, EvolutionState *, int);
 
 typedef struct
 {
-    evaluateFunction evaluate;
+    //evaluateFunction evaluate;
+    void* evaluate;
 } Problem;
 
 YagalAPI(void) yagal_set_fitness(Individual *, EvolutionState *);

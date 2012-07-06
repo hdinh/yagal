@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from yagal import begin_evolve
+from yagal import begin_evolve, EvolutionProblem
 
 class MaxOnes(object):
     def evaluate(self, state, individual, subpopulation, threadnum):
@@ -12,15 +12,15 @@ class MaxOnes(object):
 
 def main():
     max_ones = MaxOnes()
-    params = Parameters()
-    params.generations = 100
+    params = {}
+    params['generations'] = 100
 
-    problem = Problem()
+    problem = EvolutionProblem()
     problem.evaluate = max_ones.evaluate
 
     future_result = begin_evolve(problem, params)
-    result = future_result.join()
-    print(result.individuals[0])
+    #result = future_result.join()
+    #print(result.individuals[0])
 
 if __name__ == '__main__':
     main()
